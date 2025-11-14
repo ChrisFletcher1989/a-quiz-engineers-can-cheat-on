@@ -5,6 +5,7 @@ export interface Question {
   question: string;
   options: string[];
   correctAnswer: number;
+  imageUrl?: string;
 }
 
 export interface QuizResult {
@@ -20,6 +21,7 @@ const QUIZ_QUESTIONS: Question[] = [
     question: "What is the capital of France?",
     options: ["London", "Berlin", "Paris", "Madrid"],
     correctAnswer: 2,
+    imageUrl: "/globe.svg",
   },
   {
     id: 2,
@@ -27,6 +29,7 @@ const QUIZ_QUESTIONS: Question[] = [
       "Which programming language is known for its use in web development?",
     options: ["Python", "JavaScript", "C++", "Assembly"],
     correctAnswer: 1,
+    imageUrl: "/window.svg",
   },
   {
     id: 3,
@@ -38,24 +41,28 @@ const QUIZ_QUESTIONS: Question[] = [
       "Hyperlinking Text Managing Language",
     ],
     correctAnswer: 0,
+    imageUrl: "/file.svg",
   },
   {
     id: 4,
     question: "Which company developed React?",
     options: ["Google", "Microsoft", "Facebook", "Apple"],
     correctAnswer: 2,
+    imageUrl: "/next.svg",
   },
   {
     id: 5,
     question: "What is the result of 2 + 2?",
     options: ["3", "4", "5", "6"],
     correctAnswer: 1,
+    imageUrl: "/vercel.svg",
   },
   {
     id: 6,
     question: "Which of these is a NoSQL database?",
     options: ["MySQL", "PostgreSQL", "MongoDB", "SQLite"],
     correctAnswer: 2,
+    imageUrl: "/globe.svg",
   },
   {
     id: 7,
@@ -67,12 +74,14 @@ const QUIZ_QUESTIONS: Question[] = [
       "Colorful Style Sheets",
     ],
     correctAnswer: 2,
+    imageUrl: "/file.svg",
   },
   {
     id: 8,
     question: "Which HTTP status code indicates a successful request?",
     options: ["404", "500", "200", "302"],
     correctAnswer: 2,
+    imageUrl: "/window.svg",
   },
   {
     id: 9,
@@ -84,12 +93,14 @@ const QUIZ_QUESTIONS: Question[] = [
       "File compression",
     ],
     correctAnswer: 1,
+    imageUrl: "/next.svg",
   },
   {
     id: 10,
     question: "Which of these is a frontend framework?",
     options: ["Express.js", "Django", "Vue.js", "Laravel"],
     correctAnswer: 2,
+    imageUrl: "/vercel.svg",
   },
 ];
 
