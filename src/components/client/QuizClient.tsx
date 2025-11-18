@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { checkAnswer, type QuizResult } from "../../app/quiz/actions";
 import Question from "./Question";
+import Question1 from "./Question1";
 
 interface Question {
   id: number;
@@ -116,17 +117,25 @@ export default function QuizClient({ questions }: QuizClientProps) {
           ></div>
         </div>
       </div>
-
-      {/* Question Component */}
-      <Question
-        question={currentQ}
-        questionNumber={currentQuestion + 1}
-        totalQuestions={questions.length}
-        onAnswerSubmit={handleAnswerSubmit}
-        isSubmitted={showResult}
-        result={result}
-      />
-
+      {currentQuestion === 0 && (
+        <Question1
+          question={currentQ}
+          totalQuestions={questions.length}
+          onAnswerSubmit={handleAnswerSubmit}
+          isSubmitted={showResult}
+          result={result}
+        />
+      )}
+      {currentQuestion !== 0 && (
+        <Question
+          question={currentQ}
+          questionNumber={currentQuestion + 1}
+          totalQuestions={questions.length}
+          onAnswerSubmit={handleAnswerSubmit}
+          isSubmitted={showResult}
+          result={result}
+        />
+      )}
       {/* Navigation Buttons */}
       {showResult && (
         <div className="mt-6 flex justify-between">

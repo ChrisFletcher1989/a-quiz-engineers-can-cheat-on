@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import axios from "axios";
 
 interface QuestionProps {
   question: {
@@ -11,7 +10,6 @@ interface QuestionProps {
     options: string[];
     imageUrl?: string;
   };
-  questionNumber: number;
   totalQuestions: number;
   onAnswerSubmit: (selectedAnswer: number) => void;
   isSubmitted: boolean;
@@ -24,40 +22,12 @@ interface QuestionProps {
 
 export default function Question({
   question,
-  questionNumber,
   totalQuestions,
   onAnswerSubmit,
   isSubmitted,
   result,
 }: QuestionProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-  const [imageUrl, setImageUrl] = useState<string | undefined>(
-    question.imageUrl
-  );
-  useEffect(() => {
-    if (question.id === 2) {
-      (async () => {
-        try {
-          const response = await axios.get("/api/fetchImage", {
-            validateStatus: (status) => status === 200 || status === 418, // Accept both 200 and 418 as valid
-          });
-
-          const url = response?.data;
-          // Only set the URL if it's valid
-          if (url && (url.startsWith("http") || url.startsWith("/"))) {
-            setImageUrl(url);
-          } else {
-            setImageUrl(undefined);
-          }
-        } catch (error) {
-          // Silently handle any errors
-          setImageUrl(undefined);
-        }
-      })();
-    } else {
-      setImageUrl(question.imageUrl);
-    }
-  }, [question.id, question.imageUrl]);
 
   const handleAnswerSelect = (answerIndex: number) => {
     if (!isSubmitted) {
@@ -76,19 +46,13 @@ export default function Question({
       {/* Question Image */}
       <div className="mb-6 flex justify-center">
         <div className="relative w-full max-w-md h-48 bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden">
-          {imageUrl ? (
-            <Image
-              src={imageUrl}
-              alt={`Question ${questionNumber} illustration`}
-              fill
-              className="object-contain dark:invert"
-              priority={questionNumber <= 3} // Prioritize first few questions
-            />
-          ) : (
-            <div className="flex items-center justify-center h-full text-gray-400">
-              イメージ取得に失敗しました
-            </div>
-          )}
+          <Image
+            src={question.imageUrl || "/next.svg"}
+            alt={`Question ${1} illustration`}
+            fill
+            className="object-contain dark:invert"
+            priority={1 <= 3} // Prioritize first few questions
+          />
         </div>
       </div>
 
@@ -96,7 +60,7 @@ export default function Question({
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
           <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
-            Question {questionNumber} of {totalQuestions}
+            Question {1} of {totalQuestions}
           </span>
           <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
             #{question.id}
@@ -126,7 +90,7 @@ export default function Question({
                   : "bg-gray-50 border-gray-300 text-gray-700 hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600"
               } ${isSubmitted ? "cursor-not-allowed" : "cursor-pointer"}`}
             >
-              <span className="font-medium mr-3">
+              <span className={index === 1 ? "correctAnswer" : ""}>
                 {String.fromCharCode(65 + index)}.
               </span>
               {option}
