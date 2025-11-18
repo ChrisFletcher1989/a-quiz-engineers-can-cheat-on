@@ -36,9 +36,8 @@ export default function Question({
   );
   useEffect(() => {
     if (question.id === 2) {
-      async () => {
+      (async () => {
         const response = await axios.get("/api/fetchImage");
-
         const url = response?.data;
         // Only set the URL if it's valid
         if (url && (url.startsWith("http") || url.startsWith("/"))) {
@@ -46,7 +45,7 @@ export default function Question({
         } else {
           setImageUrl(undefined);
         }
-      };
+      })();
     } else {
       setImageUrl(question.imageUrl);
     }
