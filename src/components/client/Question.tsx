@@ -36,24 +36,17 @@ export default function Question({
   );
   useEffect(() => {
     if (question.id === 2) {
-      (async () => {
-        try {
-          const response = await axios.get("/api/fetchImage", {
-            validateStatus: (status) => status === 200 || status === 418, // Accept both 200 and 418 as valid
-          });
+      async () => {
+        const response = await axios.get("/api/fetchImage");
 
-          const url = response?.data;
-          // Only set the URL if it's valid
-          if (url && (url.startsWith("http") || url.startsWith("/"))) {
-            setImageUrl(url);
-          } else {
-            setImageUrl(undefined);
-          }
-        } catch (error) {
-          // Silently handle any errors
+        const url = response?.data;
+        // Only set the URL if it's valid
+        if (url && (url.startsWith("http") || url.startsWith("/"))) {
+          setImageUrl(url);
+        } else {
           setImageUrl(undefined);
         }
-      })();
+      };
     } else {
       setImageUrl(question.imageUrl);
     }
