@@ -1,9 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { checkAnswer, type QuizResult } from "../../app/quiz/actions";
 import Question from "./Question";
 import Question1 from "./Question1";
+import Question2 from "./Question2";
+import Question3 from "./Question3";
+import Question4 from "./Question4";
+import Question5 from "./Question5";
 
 interface Question {
   id: number;
@@ -15,7 +19,23 @@ interface QuizClientProps {
   questions: Question[];
 }
 
+const QUESTION_COMPONENTS = [
+  Question1,
+  Question2,
+  Question3,
+  Question4,
+  Question5,
+];
+
 export default function QuizClient({ questions }: QuizClientProps) {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const now = new Date().toISOString();
+      document.cookie = `quizStartTime=${now}; path=/`;
+      console.log("Cookie set:", document.cookie);
+    }
+  }, []);
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showResult, setShowResult] = useState(false);
   const [result, setResult] = useState<QuizResult | null>(null);
@@ -95,6 +115,7 @@ export default function QuizClient({ questions }: QuizClientProps) {
   }
 
   const currentQ = questions[currentQuestion];
+  const QuestionComponent = QUESTION_COMPONENTS[currentQuestion] || Question;
 
   return (
     <div className="max-w-2xl mx-auto p-6">
@@ -117,25 +138,13 @@ export default function QuizClient({ questions }: QuizClientProps) {
           ></div>
         </div>
       </div>
-      {currentQuestion === 0 && (
-        <Question1
-          question={currentQ}
-          totalQuestions={questions.length}
-          onAnswerSubmit={handleAnswerSubmit}
-          isSubmitted={showResult}
-          result={result}
-        />
-      )}
-      {currentQuestion !== 0 && (
-        <Question
-          question={currentQ}
-          questionNumber={currentQuestion + 1}
-          totalQuestions={questions.length}
-          onAnswerSubmit={handleAnswerSubmit}
-          isSubmitted={showResult}
-          result={result}
-        />
-      )}
+      <QuestionComponent
+        question={currentQ}
+        totalQuestions={questions.length}
+        onAnswerSubmit={handleAnswerSubmit}
+        isSubmitted={showResult}
+        result={result}
+      />
       {/* Navigation Buttons */}
       {showResult && (
         <div className="mt-6 flex justify-between">

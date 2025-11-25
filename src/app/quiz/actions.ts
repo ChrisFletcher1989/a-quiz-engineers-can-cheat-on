@@ -18,88 +18,47 @@ export interface QuizResult {
 const QUIZ_QUESTIONS: Question[] = [
   {
     id: 1,
-    question: "What is the capital of France?",
-    options: ["London", "Berlin", "Paris", "Madrid"],
-    correctAnswer: 2,
+    question: "What is the capital of Laos?",
+    options: ["Muang Xey", "Muang Xay", "Vientiane", "Vientian"],
+    correctAnswer: 3,
     imageUrl: "/globe.svg",
   },
   {
     id: 2,
-    question:
-      "Which programming language is known for its use in web development?",
-    options: ["Python", "JavaScript", "C++", "Assembly"],
+    question: "Why did the photo fail to load??",
+    options: [
+      "Server is busy serving tea",
+      "Photo not found",
+      "Image was corrupted",
+      "Server is overloaded",
+    ],
     correctAnswer: 1,
     imageUrl: "/window.svg",
   },
   {
     id: 3,
-    question: "What does HTML stand for?",
+    question: "What time in UTC did you start this quiz?",
     options: [
-      "Hyper Text Markup Language",
-      "Home Tool Markup Language",
-      "Hyperlinks and Text Markup Language",
-      "Hyperlinking Text Managing Language",
+      "", //todo add times
+      "",
+      "",
+      "",
     ],
     correctAnswer: 0,
     imageUrl: "/file.svg",
   },
   {
     id: 4,
-    question: "Which company developed React?",
-    options: ["Google", "Microsoft", "Facebook", "Apple"],
-    correctAnswer: 2,
+    question: "Is it raining in London right now?",
+    options: ["Yes", "No"],
+    correctAnswer: 2, //todo call weather API and render answer accordingly
     imageUrl: "/next.svg",
   },
   {
     id: 5,
-    question: "What is the result of 2 + 2?",
-    options: ["3", "4", "5", "6"],
+    question: "What is the population of Alaska according to the 2020 census?", //CSS CLASS REVEALS
+    options: ["733,391", "733,392", "733,393", "733,394"],
     correctAnswer: 1,
-    imageUrl: "/vercel.svg",
-  },
-  {
-    id: 6,
-    question: "Which of these is a NoSQL database?",
-    options: ["MySQL", "PostgreSQL", "MongoDB", "SQLite"],
-    correctAnswer: 2,
-    imageUrl: "/globe.svg",
-  },
-  {
-    id: 7,
-    question: "What does CSS stand for?",
-    options: [
-      "Computer Style Sheets",
-      "Creative Style Sheets",
-      "Cascading Style Sheets",
-      "Colorful Style Sheets",
-    ],
-    correctAnswer: 2,
-    imageUrl: "/file.svg",
-  },
-  {
-    id: 8,
-    question: "Which HTTP status code indicates a successful request?",
-    options: ["404", "500", "200", "302"],
-    correctAnswer: 2,
-    imageUrl: "/window.svg",
-  },
-  {
-    id: 9,
-    question: "What is the main purpose of Git?",
-    options: [
-      "Database management",
-      "Version control",
-      "Web hosting",
-      "File compression",
-    ],
-    correctAnswer: 1,
-    imageUrl: "/next.svg",
-  },
-  {
-    id: 10,
-    question: "Which of these is a frontend framework?",
-    options: ["Express.js", "Django", "Vue.js", "Laravel"],
-    correctAnswer: 2,
     imageUrl: "/vercel.svg",
   },
 ];
