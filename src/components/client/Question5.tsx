@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function Question5({
   question,
@@ -20,7 +20,7 @@ export default function Question5({
       onAnswerSubmit(selectedAnswer);
     }
   };
-
+  console.log("ヒント：Too many requests");
   return (
     <div>
       <h2>

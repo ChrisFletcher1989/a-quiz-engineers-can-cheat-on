@@ -90,24 +90,24 @@ export default function QuizClient({ questions }: QuizClientProps) {
       <div className="max-w-2xl mx-auto p-6">
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 text-center">
           <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">
-            Quiz Complete!
+            クイズ完了！
           </h2>
           <div className="mb-6">
             <div className="text-6xl font-bold text-blue-600 mb-2">{score}</div>
             <div className="text-xl text-gray-600 dark:text-gray-300">
-              out of {questions.length}
+              全{questions.length}問中
             </div>
           </div>
           <div className="mb-6">
             <div className="text-lg text-gray-700 dark:text-gray-300">
-              Your Score: {Math.round((score / questions.length) * 100)}%
+              あなたのスコア: {Math.round((score / questions.length) * 100)}%
             </div>
           </div>
           <button
             onClick={resetQuiz}
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
           >
-            Retake Quiz
+            クイズをやり直す
           </button>
         </div>
       </div>
@@ -123,10 +123,10 @@ export default function QuizClient({ questions }: QuizClientProps) {
       <div className="mb-6">
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-            Question {currentQuestion + 1} of {questions.length}
+            第{currentQuestion + 1}問 / 全{questions.length}問
           </span>
           <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-            Score: {score}/{answeredQuestions.size}
+            スコア: {score}/{answeredQuestions.size}
           </span>
         </div>
         <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
@@ -152,16 +152,14 @@ export default function QuizClient({ questions }: QuizClientProps) {
             onClick={resetQuiz}
             className="px-4 py-2 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 font-medium transition-colors"
           >
-            Reset Quiz
+            最初からやり直す
           </button>
 
           <button
             onClick={handleNextQuestion}
             className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors"
           >
-            {currentQuestion < questions.length - 1
-              ? "Next Question"
-              : "View Results"}
+            {currentQuestion < questions.length - 1 ? "次の問題" : "結果を見る"}
           </button>
         </div>
       )}

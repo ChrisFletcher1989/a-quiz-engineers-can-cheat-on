@@ -19,7 +19,7 @@ const QUIZ_QUESTIONS: Question[] = [
   {
     id: 1,
     question: "What is the capital of Laos?",
-    options: ["Muang Xey", "Muang Xay", "Vientiane", "Vientian"],
+    options: ["Muang Xey", "Muang Xay", "Vientian", "Vientiane"],
     correctAnswer: 3,
     imageUrl: "/globe.svg",
   },
@@ -32,7 +32,7 @@ const QUIZ_QUESTIONS: Question[] = [
       "Image was corrupted",
       "Server is overloaded",
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     imageUrl: "/window.svg",
   },
   {
@@ -56,9 +56,10 @@ const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: 5,
-    question: "What is the population of Alaska according to the 2020 census?", //CSS CLASS REVEALS
-    options: ["733,391", "733,392", "733,393", "733,394"],
-    correctAnswer: 1,
+    question:
+      "次の合同式を満たす 0≤n&lt;19×23 の整数 n を求めよ：n≡4(mod19), n≡8(mod23)",
+    options: ["440", "441", "443", "422"],
+    correctAnswer: 3,
     imageUrl: "/vercel.svg",
   },
 ];

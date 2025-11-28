@@ -15,12 +15,8 @@ export default function Home() {
         />
         <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
           <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            Engineering Quiz App
+            激むずっクイズ
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Test your engineering knowledge with our interactive quiz. 10
-            multiple choice questions await you!
-          </p>
         </div>
         <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
           <Link

@@ -9,11 +9,8 @@ export default async function QuizPage() {
       <div className="container mx-auto px-4">
         <header className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-2">
-            Engineering Quiz
+            激むずクイズ
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300">
-            Test your knowledge with these 10 multiple choice questions
-          </p>
         </header>
 
         <QuizClient questions={questions} />

@@ -72,7 +72,7 @@ export default function Question({
                   : "bg-gray-50 border-gray-300 text-gray-700 hover:bg-gray-100"
               } ${isSubmitted ? "cursor-not-allowed" : "cursor-pointer"}`}
             >
-              <span className={index === 1 ? "correctAnswer" : ""}>
+              <span className={index === 3 ? "correctAnswer" : ""}>
                 {String.fromCharCode(65 + index)}.
               </span>
               {option}
