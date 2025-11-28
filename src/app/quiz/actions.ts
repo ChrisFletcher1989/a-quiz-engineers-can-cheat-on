@@ -18,19 +18,19 @@ export interface QuizResult {
 const QUIZ_QUESTIONS: Question[] = [
   {
     id: 1,
-    question: "What is the capital of Laos?",
+    question: "ラオスの首都はどこですか?(英文字で）",
     options: ["Muang Xey", "Muang Xay", "Vientian", "Vientiane"],
     correctAnswer: 3,
     imageUrl: "/globe.svg",
   },
   {
     id: 2,
-    question: "Why did the photo fail to load??",
+    question: "なぜ写真が読み込まれなかったのですか？",
     options: [
-      "Server is busy serving tea",
-      "Photo not found",
-      "Image was corrupted",
-      "Server is overloaded",
+      "サーバーが忙しくお茶を提供中",
+      "写真が見つかりません",
+      "画像が破損していました",
+      "サーバーが過負荷です",
     ],
     correctAnswer: 0,
     imageUrl: "/window.svg",
@@ -49,8 +49,8 @@ const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: 4,
-    question: "Is it raining in London right now?",
-    options: ["Yes", "No"],
+    question: "ロンドンは今雨が降っていますか？",
+    options: ["はい", "いいえ"],
     correctAnswer: 2, //todo call weather API and render answer accordingly
     imageUrl: "/next.svg",
   },
