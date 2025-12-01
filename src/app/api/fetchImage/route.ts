@@ -6,11 +6,3 @@ export async function GET() {
     statusText: "{status: 418, message: 'I'm a teapot'}",
   });
 }
-
-export async function POST() {
-  // Also handle POST requests with the same response
-  return new NextResponse("I'm a teapot", {
-    status: 418,
-    statusText: "I'm a teapot",
-  });
-}

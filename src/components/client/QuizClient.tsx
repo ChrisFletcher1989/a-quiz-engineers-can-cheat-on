@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { checkAnswer, type QuizResult } from "../../app/quiz/actions";
-import Question from "./Question";
 import Question1 from "./Question1";
 import Question2 from "./Question2";
 import Question3 from "./Question3";
@@ -71,7 +70,7 @@ export default function QuizClient({ questions }: QuizClientProps) {
       setCurrentQuestion(currentQuestion + 1);
       setShowResult(false);
       setResult(null);
-    } else {
+    } else if (showResult) {
       setIsQuizComplete(true);
     }
   };
@@ -100,7 +99,7 @@ export default function QuizClient({ questions }: QuizClientProps) {
           </div>
           <div className="mb-6">
             <div className="text-lg text-gray-700 dark:text-gray-300">
-              あなたのスコア: {Math.round((score / questions.length) * 100)}%
+              スコア: {Math.round((score / questions.length) * 100)}%
             </div>
           </div>
           <button
@@ -115,7 +114,7 @@ export default function QuizClient({ questions }: QuizClientProps) {
   }
 
   const currentQ = questions[currentQuestion];
-  const QuestionComponent = QUESTION_COMPONENTS[currentQuestion] || Question;
+  const QuestionComponent = QUESTION_COMPONENTS[currentQuestion];
 
   return (
     <div className="max-w-2xl mx-auto p-6">

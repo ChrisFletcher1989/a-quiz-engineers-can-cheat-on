@@ -14,7 +14,6 @@ export interface QuizResult {
   explanation?: string;
 }
 
-// Mock quiz data - in a real app this would come from a database
 const QUIZ_QUESTIONS: Question[] = [
   {
     id: 1,
@@ -38,12 +37,7 @@ const QUIZ_QUESTIONS: Question[] = [
   {
     id: 3,
     question: "What time in UTC did you start this quiz?",
-    options: [
-      "", //todo add times
-      "",
-      "",
-      "",
-    ],
+    options: ["", "", "", ""],
     correctAnswer: 0,
     imageUrl: "/file.svg",
   },
@@ -51,7 +45,7 @@ const QUIZ_QUESTIONS: Question[] = [
     id: 4,
     question: "ロンドンは今雨が降っていますか？",
     options: ["はい", "いいえ"],
-    correctAnswer: 2, //todo call weather API and render answer accordingly
+    correctAnswer: 1, // fixed index: should be 0 or 1
     imageUrl: "/next.svg",
   },
   {
@@ -81,13 +75,55 @@ export async function checkAnswer(
     throw new Error("Question not found");
   }
 
-  const isCorrect = selectedAnswer === question.correctAnswer;
+  let isCorrect = false;
+  let correctAnswer = question.correctAnswer;
+  let explanation = "";
+
+  if (question.id === 3) {
+    // For question 3, check cookie value
+    let cookieValue = "";
+    if (typeof window !== "undefined") {
+      const match = document.cookie.match(/quizStartTime=([^;]+)/);
+      if (match) {
+        cookieValue = match[1];
+      }
+    }
+    // Compare selected option to cookie value
+    isCorrect = question.options[selectedAnswer] === cookieValue;
+    correctAnswer = question.options.findIndex((opt) => opt === cookieValue);
+    explanation = isCorrect
+      ? "Correct! You selected the quiz start time."
+      : `The correct answer is: ${cookieValue}`;
+  } else if (question.id === 4) {
+    // For question 4, check London weather API
+    try {
+      const res = await fetch(
+        "https://api.open-meteo.com/v1/forecast?latitude=51.5072&longitude=-0.1276&current=precipitation"
+      );
+      const data = await res.json();
+      const precipitation = data?.current?.precipitation ?? 0;
+      const isRaining = precipitation > 0;
+      correctAnswer = isRaining ? 0 : 1; // 0 = "Yes", 1 = "No"
+      isCorrect = selectedAnswer === correctAnswer;
+      explanation = isRaining
+        ? "It is currently raining in London."
+        : "It is currently not raining in London.";
+    } catch (error) {
+      // Fallback if API fails
+      correctAnswer = 1;
+      isCorrect = selectedAnswer === correctAnswer;
+      explanation = "Could not verify London weather.";
+    }
+  } else {
+    isCorrect = selectedAnswer === question.correctAnswer;
+    explanation = `The correct answer is: ${
+      question.options[question.correctAnswer]
+    }`;
+  }
 
   return {
     isCorrect,
-    correctAnswer: question.correctAnswer,
-    explanation: `The correct answer is: ${
-      question.options[question.correctAnswer]
-    }`,
+    correctAnswer,
+    explanation,
   };
 }
