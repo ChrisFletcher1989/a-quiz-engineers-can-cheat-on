@@ -52,7 +52,7 @@ const QUIZ_QUESTIONS: Question[] = [
     id: 5,
     question:
       "次の合同式を満たす 0≤n&lt;19×23 の整数 n を求めよ：n≡4(mod19), n≡8(mod23)",
-    options: ["440", "441", "443", "422"],
+    options: ["440", "422", "443", "429"],
     correctAnswer: 3,
     imageUrl: "/vercel.svg",
   },
