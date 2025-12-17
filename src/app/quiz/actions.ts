@@ -1,5 +1,7 @@
 "use server";
 
+import { cookies } from "next/headers";
+
 export interface Question {
   id: number;
   question: string;
@@ -51,7 +53,7 @@ const QUIZ_QUESTIONS: Question[] = [
   {
     id: 5,
     question:
-      "次の合同式を満たす 0≤n&lt;19×23 の整数 n を求めよ：n≡4(mod19), n≡8(mod23)",
+      "次の合同式を満たす 0≤n<19×23 の整数 n を求めよ：n≡11(mod19), n≡15(mod23)",
     options: ["440", "422", "443", "429"],
     correctAnswer: 3,
     imageUrl: "/vercel.svg",
@@ -80,20 +82,14 @@ export async function checkAnswer(
   let explanation = "";
 
   if (question.id === 3) {
-    // For question 3, check cookie value
-    let cookieValue = "";
-    if (typeof window !== "undefined") {
-      const match = document.cookie.match(/quizStartTime=([^;]+)/);
-      if (match) {
-        cookieValue = match[1];
-      }
-    }
-    // Compare selected option to cookie value
-    isCorrect = question.options[selectedAnswer] === cookieValue;
-    correctAnswer = question.options.findIndex((opt) => opt === cookieValue);
+    correctAnswer = 0;
+    isCorrect = selectedAnswer === 0;
+
+    const cookieStore = await cookies();
+    const cookieValue = cookieStore.get("quizStartTime")?.value || "";
     explanation = isCorrect
       ? "Correct! You selected the quiz start time."
-      : `The correct answer is: ${cookieValue}`;
+      : `Incorrect. The correct answer was the quiz start time: ${cookieValue}`;
   } else if (question.id === 4) {
     // For question 4, check London weather API
     try {
