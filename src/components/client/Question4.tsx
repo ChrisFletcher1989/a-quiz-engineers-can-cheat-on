@@ -46,9 +46,9 @@ export default function Question4({
 
   return (
     <div>
-      <h2>Question {questionNumber}: Is it raining in London right now?</h2>
+      <h2>Question {questionNumber}: ロンドンは今雨が降っていますか？</h2>
       {loading ? (
-        <div className="mb-4 text-gray-500">Checking London weather...</div>
+        <div className="mb-4 text-gray-500">ロンドンの天気を確認中...</div>
       ) : null}
       <div className="space-y-3">
         {options.map((option: string, index: number) => (

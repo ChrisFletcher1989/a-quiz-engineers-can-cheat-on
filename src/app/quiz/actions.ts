@@ -38,7 +38,7 @@ const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: 3,
-    question: "What time in UTC did you start this quiz?",
+    question: "このクイズはUTCで何時に始まりましたか？",
     options: ["", "", "", ""],
     correctAnswer: 0,
     imageUrl: "/file.svg",
@@ -88,8 +88,8 @@ export async function checkAnswer(
     const cookieStore = await cookies();
     const cookieValue = cookieStore.get("quizStartTime")?.value || "";
     explanation = isCorrect
-      ? "Correct! You selected the quiz start time."
-      : `Incorrect. The correct answer was the quiz start time: ${cookieValue}`;
+      ? "Correct!"
+      : `Incorrect. 開催時間は: ${cookieValue}`;
   } else if (question.id === 4) {
     // For question 4, check London weather API
     try {
@@ -102,13 +102,13 @@ export async function checkAnswer(
       correctAnswer = isRaining ? 0 : 1; // 0 = "Yes", 1 = "No"
       isCorrect = selectedAnswer === correctAnswer;
       explanation = isRaining
-        ? "It is currently raining in London."
-        : "It is currently not raining in London.";
+        ? "ロンドンは現在雨が降っています。"
+        : "ロンドンは現在雨が降っていません。";
     } catch (error) {
       // Fallback if API fails
       correctAnswer = 1;
       isCorrect = selectedAnswer === correctAnswer;
-      explanation = "Could not verify London weather.";
+      explanation = "ロンドンの天気を確認できませんでした。";
     }
   } else {
     isCorrect = selectedAnswer === question.correctAnswer;

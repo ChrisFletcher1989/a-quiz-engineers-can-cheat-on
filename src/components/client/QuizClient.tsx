@@ -31,7 +31,6 @@ export default function QuizClient({ questions }: QuizClientProps) {
     if (typeof window !== "undefined") {
       const now = new Date().toISOString();
       document.cookie = `quizStartTime=${now}; path=/`;
-      console.log("Cookie set:", document.cookie);
     }
   }, []);
 
